@@ -13,6 +13,7 @@ import OrderHistory from "./pages/orders/OrderHistory";
 import ManageUsers from "./pages/admin/ManageUsers";
 import ManageProducts from "./pages/admin/ManageProducts";
 import ManageOrders from "./pages/admin/ManageOrders";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           />
           <Route path="/admin/orders" element={<ManageOrders />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
