@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import ProductList from "./pages/products/ProductList";
+import ProductDetail from "./pages/products/ProductDetail";
+import AdminProductForm from "./pages/products/AdminProductForm";
+import Cart from "./pages/cart/Cart";
+import Checkout from "./pages/cart/Checkout";
+import OrderSuccess from "./pages/cart/OrderSuccess";
+import OrderHistory from "./pages/orders/OrderHistory";
+import ManageUsers from "./pages/admin/ManageUsers";
+import ManageProducts from "./pages/admin/ManageProducts";
+import ManageOrders from "./pages/admin/ManageOrders";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Router>
+        <Header />
+
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/admin/products" element={<AdminProductForm />} />
+
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+
+          <Route path="/orders" element={<OrderHistory />} />
+
+          <Route path="/admin/users" element={<ManageUsers />} />
+          <Route
+            path="/admin/products-management"
+            element={<ManageProducts />}
+          />
+          <Route path="/admin/orders" element={<ManageOrders />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
-export default App
+export default App;
