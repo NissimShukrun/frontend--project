@@ -4,3 +4,9 @@ export interface User {
   password: string;
   isAdmin: string;
 }
+
+export interface Product {
+  name: string;
+  price: number;
+  description: string;
+}
