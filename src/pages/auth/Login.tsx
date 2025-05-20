@@ -7,7 +7,7 @@ const Login = () => {
   const { user, message } = useAppSelector((state) => state.auth);
 
   const [form, setForm] = useState({ email: "", password: "" });
-
+  const [isLogin, setIsLogin] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -15,37 +15,43 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(fetchLoginUser({ email: form.email, password: form.password }));
+    setIsLogin(true);
   };
 
   return (
     <div>
       <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
+      {isLogin ? (
         <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+          {message && <p>{message}</p>}
+          {user && <p>{user.name}!</p>}
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {message && <p>{message}</p>}
-      {user && <p>{user.name}!</p>}
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      )}
     </div>
   );
 };
