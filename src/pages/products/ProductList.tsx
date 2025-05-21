@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { fetchProducts } from "../../slices/productSlice";
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../slices/cartSlice";
 
 const ProductList = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
   const [count, setCount] = useState<{ [id: string]: number }>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -19,8 +22,12 @@ const ProductList = () => {
   };
 
   const handleBuy = (id: string) => {
+    const product = products.find((p) => p._id === id);
     const quantity = count[id] || 1;
-    alert(`Buying ${quantity} of product ${id}`);
+    if (product) {
+      dispatch(addToCart({ product, quantity }));
+      navigate("/cart");
+    }
   };
 
   return (
