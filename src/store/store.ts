@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import authReducer from "../slices/authSlice";
 //import cartReducer from "../slices/cartSlice";
 //import orderReducer from "../slices/orderSlice";
-//import productReducer from "../slices/productSlice";
+import productReducer from "../slices/productSlice";
 //import userReducer from "../slices/userSlice";
 
 export const store = configureStore({

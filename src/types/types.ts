@@ -6,6 +6,7 @@ export interface User {
 }
 
 export interface Product {
+  _id: string;
   name: string;
   price: number;
   description: string;
