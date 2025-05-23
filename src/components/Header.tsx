@@ -1,9 +1,8 @@
-import { Link, useSearchParams } from "react-router-dom";
-import { useSelector, UseSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../store/store";
 
 const Header = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.user);
 
   return (
     <div>
