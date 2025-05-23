@@ -39,6 +39,27 @@ export const fetchLoginUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
+  const response = await fetch(`http://localhost:5000/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Logout failed");
+  return true;
+});
+
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/fetchCurrentUser",
+  async () => {
+    const response = await fetch("http://localhost:5000/auth/me", {
+      method: "GET",
+      credentials: "include",
+    });
+    if (!response.ok) throw new Error("User not authenticated");
+    return response.json();
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -52,6 +73,13 @@ const authSlice = createSlice({
       .addCase(fetchLoginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.message = action.payload.message;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null;
+        state.message = "Logged out";
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
       });
   },
 });

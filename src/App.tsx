@@ -15,8 +15,18 @@ import ManageProducts from "./pages/admin/ManageProducts";
 import ManageOrders from "./pages/admin/ManageOrders";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Logout from "./pages/logout/Logout";
+import { useEffect } from "react";
+import { useAppDispatch } from "./store/store";
+import { fetchCurrentUser } from "./slices/authSlice";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, []);
+
   return (
     <div>
       <Router>
@@ -44,6 +54,7 @@ function App() {
             element={<ManageProducts />}
           />
           <Route path="/admin/orders" element={<ManageOrders />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
         <Footer />
       </Router>
