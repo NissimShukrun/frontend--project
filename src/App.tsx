@@ -19,14 +19,25 @@ import Logout from "./pages/logout/Logout";
 import { useEffect } from "react";
 import { useAppDispatch } from "./store/store";
 import { fetchCurrentUser } from "./slices/authSlice";
+import { setCart } from "./slices/cartSlice";
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, []);
-
+    dispatch(fetchCurrentUser())
+      .unwrap()
+      .then((user) => {
+        if (user && user._id) {
+          const cartKey = `cart_${user._id}`;
+          const savedCart = localStorage.getItem(cartKey);
+          if (savedCart) {
+            dispatch(setCart(JSON.parse(savedCart)));
+          }
+        }
+      })
+      .catch(() => {});
+  }, [dispatch]);
   return (
     <div>
       <Router>

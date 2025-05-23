@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Product, CartItem } from "../types/types";
+import { logoutUser } from "./authSlice";
 
 interface CartState {
   items: CartItem[];
@@ -13,6 +15,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+    },
+
     addToCart: (
       state,
       action: PayloadAction<{ product: Product; quantity: number }>
@@ -38,7 +44,13 @@ const cartSlice = createSlice({
       state.items = [];
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.items = [];
+    });
+  },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { setCart, addToCart, removeFromCart, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

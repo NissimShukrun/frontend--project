@@ -3,6 +3,7 @@ export interface User {
   email: string;
   password: string;
   isAdmin: string;
+  _id: string | number;
 }
 
 export interface Product {

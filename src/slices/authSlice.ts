@@ -79,7 +79,7 @@ const authSlice = createSlice({
         state.message = "Logged out";
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload;
       });
   },
 });
