@@ -30,6 +30,13 @@ const ProductList = () => {
     }
   };
 
+  const productPage = (id: string) => {
+    const product = products.find((p) => p._id === id);
+    if (product) {
+      navigate(`/products/${id}`);
+    }
+  };
+
   return (
     <div>
       <h1>Products:</h1>
@@ -38,7 +45,11 @@ const ProductList = () => {
         {products.map((p) => (
           <li key={p._id}>
             {p.name} - ${p.price}
-            <p>{p.description}</p>
+            <div>
+              <button type="button" onClick={() => productPage(p._id)}>
+                More Details
+              </button>
+            </div>
             <input
               type="number"
               name="number"
