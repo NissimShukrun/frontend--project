@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import authReducer from "../slices/authSlice";
 import cartReducer from "../slices/cartSlice";
-//import orderReducer from "../slices/orderSlice";
+import orderReducer from "../slices/orderSlice";
 import productReducer from "../slices/productSlice";
 import { cartMiddleware } from "../slices/cartMiddlewre";
 
@@ -10,7 +10,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     cart: cartReducer,
-    //orders: orderReducer,
+    orders: orderReducer,
     products: productReducer,
   },
   middleware: (getDefaultMiddleware) =>

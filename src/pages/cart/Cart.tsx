@@ -1,9 +1,11 @@
 import { useAppSelector, useAppDispatch } from "../../store/store";
 import { removeFromCart, clearCart } from "../../slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const total = items.reduce(
     (sum, { product, quantity }) => sum + product.price * quantity,
@@ -29,7 +31,7 @@ const Cart = () => {
         ))}
       </ul>
       <h2>Total: ${total}</h2>
-      <button>Buy</button>
+      <button onClick={() => navigate("/checkout")}>Buy</button>
       <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
     </div>
   );

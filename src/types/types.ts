@@ -17,3 +17,18 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export interface Order {
+  _id: string;
+  customer: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  items: {
+    product: Product;
+    quantity: number;
+  }[];
+  totalPrice: number;
+  createdAt: string;
+}
