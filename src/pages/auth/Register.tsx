@@ -1,13 +1,16 @@
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { fetchRegisterUser } from "../../slices/authSlice";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useAppDispatch();
-  const { user, message } = useAppSelector((state) => state.auth);
+  const { message: registerMessage } = useAppSelector((state) => state.auth);
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [isRegistered, setIsRegistered] = useState(false);
+  const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -20,55 +23,54 @@ const Register = () => {
         email: form.email,
         password: form.password,
       })
-    );
-    setIsRegistered(true);
+    ).then(() => {
+      setIsRegistered(true);
+      if (registerMessage) {
+        alert(`Registration successful: ${registerMessage}`);
+      } else {
+        alert("Registration successful!");
+      }
+      navigate("/login");
+    });
   };
 
   return (
     <div>
       <h2>Register</h2>
 
-      {isRegistered ? (
+      <form onSubmit={handleSubmit}>
         <div>
-          {message && <p>{message}</p>}
-          {user && <p>{user.name}</p>}
-          {user && <p>{user.email}</p>}
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
         </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-      )}
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
 };

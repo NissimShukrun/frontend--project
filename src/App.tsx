@@ -16,6 +16,7 @@ import ManageOrders from "./pages/admin/ManageOrders";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Logout from "./pages/logout/Logout";
+import Error from "./components/Error";
 import { useEffect } from "react";
 import { useAppDispatch } from "./store/store";
 import { fetchCurrentUser } from "./slices/authSlice";
@@ -66,6 +67,7 @@ function App() {
           />
           <Route path="/admin/orders" element={<ManageOrders />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </Router>

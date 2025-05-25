@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { Order } from "../types/types";
+import { logoutUser } from "./authSlice";
 
 interface OrderState {
   orders: Order[];
@@ -68,10 +69,14 @@ const orderSlice = createSlice({
       })
       .addCase(fetchMyOrders.fulfilled, (state, action) => {
         state.orders = action.payload;
+        state.status = "idle";
       })
       .addCase(fetchAllOrders.fulfilled, (state, action) => {
         state.orders = action.payload;
         state.status = "idle";
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        return initialState;
       });
   },
 });

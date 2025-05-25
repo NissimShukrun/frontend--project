@@ -67,7 +67,6 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRegisterUser.fulfilled, (state, action) => {
-        state.user = action.payload.returnUser;
         state.message = action.payload.message;
       })
       .addCase(fetchLoginUser.fulfilled, (state, action) => {

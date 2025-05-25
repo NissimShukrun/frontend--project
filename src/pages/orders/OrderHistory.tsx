@@ -9,27 +9,23 @@ const OrderHistory = () => {
   const user = useAppSelector((state) => state.auth.user);
 
   useEffect(() => {
-    if (orders.length === 0 && status !== "loading") {
-      if (user?.isAdmin === "admin") {
-        dispatch(fetchAllOrders());
-      } else if (user) {
-        dispatch(fetchMyOrders());
-      }
+    if (user?.isAdmin === "admin") {
+      dispatch(fetchAllOrders());
+    } else if (user) {
+      dispatch(fetchMyOrders());
     }
-  }, [dispatch, user, orders.length, status]);
+  }, [dispatch, user]);
 
   if (!user) {
     return <p>Please log in to view your orders.</p>;
   }
 
-  if (status === "loading") {
-    return <p>loading orders ...</p>;
-  }
-
   return (
     <div>
       <h2>{user.isAdmin === "admin" ? "All Orders (Admin)" : "My Orders"}</h2>
-      {orders.length === 0 ? (
+      {status === "loading" ? (
+        <p>loading orders ...</p>
+      ) : orders.length === 0 && status !== "success" ? (
         <p>No orders found.</p>
       ) : (
         <ul>
