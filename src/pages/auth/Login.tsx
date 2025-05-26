@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { fetchLoginUser } from "../../slices/authSlice";
+import { fetchLoginUser, fetchCurrentUser } from "../../slices/authSlice";
 import { useState } from "react";
 
 const Login = () => {
@@ -12,10 +12,17 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(fetchLoginUser({ email: form.email, password: form.password }));
-    setIsLogin(true);
+    try {
+      await dispatch(
+        fetchLoginUser({ email: form.email, password: form.password })
+      ).unwrap();
+      await dispatch(fetchCurrentUser()).unwrap();
+      setIsLogin(true);
+    } catch (err) {
+      console.error("Login failed", err);
+    }
   };
 
   return (

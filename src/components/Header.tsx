@@ -23,6 +23,12 @@ const Header = () => {
             <Link to="/logout">Logout</Link>
           </>
         )}
+        {user?.isAdmin === "admin" && (
+          <>
+            <Link to="/admin/products-list">Create Products</Link>
+            <Link to="/admin/products-form">Edit Products</Link>
+          </>
+        )}
       </nav>
     </div>
   );
