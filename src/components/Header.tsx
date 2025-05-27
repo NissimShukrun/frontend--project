@@ -25,8 +25,7 @@ const Header = () => {
         )}
         {user?.isAdmin === "admin" && (
           <>
-            <Link to="/admin/products-list">Create Products</Link>
-            <Link to="/admin/products-form">Edit Products</Link>
+            <Link to="/admin/products-form">Products Changes</Link>
           </>
         )}
       </nav>

@@ -31,18 +31,6 @@ const ProductDetail = () => {
       <h2>{product.name}</h2>
       <p>Price: ${product.price}</p>
       <p>{product.description}</p>
-      <p>
-        Here is more details for the product Lorem ipsum dolor sit amet
-        consectetur, adipisicing elit. Aspernatur, earum fuga, quisquam modi
-        officiis cum magni itaque, nostrum corrupti adipisci id recusandae
-        molestias placeat architecto dolorum nisi repellat! Quia, cupiditate.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur,
-        earum fuga, quisquam modi officiis cum magni itaque, nostrum corrupti
-        adipisci id recusandae molestias placeat architecto dolorum nisi
-        repellat! Quia, cupiditate.
-      </p>
       <div>
         <input
           type="number"

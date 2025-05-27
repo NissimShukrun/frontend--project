@@ -19,7 +19,6 @@ import { useEffect } from "react";
 import { useAppDispatch } from "./store/store";
 import { fetchCurrentUser } from "./slices/authSlice";
 import { setCart } from "./slices/cartSlice";
-import AdminProductList from "./pages/products/AdminProductList";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,7 +51,6 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/products-form" element={<AdminProductForm />} />
-          <Route path="/admin/products-list" element={<AdminProductList />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />

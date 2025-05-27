@@ -97,6 +97,12 @@ const productSlice = createSlice({
       })
       .addCase(fetchUpdateProduct.fulfilled, (state, action) => {
         state.product = action.payload;
+        const index = state.products.findIndex(
+          (p) => p._id === action.payload._id
+        );
+        if (index !== -1) {
+          state.products[index] = action.payload;
+        }
       })
       .addCase(fetchDeleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter((p) => p._id !== action.payload);
