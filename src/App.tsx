@@ -10,7 +10,6 @@ import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/cart/Checkout";
 import OrderSuccess from "./pages/cart/OrderSuccess";
 import OrderHistory from "./pages/orders/OrderHistory";
-import ManageUsers from "./pages/admin/ManageUsers";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Logout from "./pages/logout/Logout";
@@ -19,6 +18,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "./store/store";
 import { fetchCurrentUser } from "./slices/authSlice";
 import { setCart } from "./slices/cartSlice";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -50,14 +50,20 @@ function App() {
 
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/admin/products-form" element={<AdminProductForm />} />
+          <Route
+            path="/admin/products-form"
+            element={
+              <AdminRoute>
+                <AdminProductForm />
+              </AdminRoute>
+            }
+          />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
 
           <Route path="/orders" element={<OrderHistory />} />
 
-          <Route path="/admin/users" element={<ManageUsers />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
         </Routes>
