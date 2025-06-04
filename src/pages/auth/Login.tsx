@@ -26,16 +26,16 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login">
+      <h2 className="login-h2">Login</h2>
 
       {isLogin ? (
-        <div>
+        <div className="login-msg">
           {message && <p>{message}</p>}
           {user && <p>{user.name}!</p>}
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <div>
             <label>Email:</label>
             <input
@@ -56,7 +56,9 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <button className="login-btn" type="submit">
+            Login
+          </button>
         </form>
       )}
     </div>

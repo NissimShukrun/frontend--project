@@ -21,8 +21,10 @@ const OrderHistory = () => {
   }
 
   return (
-    <div>
-      <h2>{user.isAdmin === "admin" ? "All Orders (Admin)" : "My Orders"}</h2>
+    <div className="orders">
+      <h2 className="orders-h2">
+        {user.isAdmin === "admin" ? "All Orders (Admin):" : "My Orders:"}
+      </h2>
       {status === "loading" ? (
         <p>loading orders ...</p>
       ) : orders.length === 0 && status !== "success" ? (
@@ -30,7 +32,7 @@ const OrderHistory = () => {
       ) : (
         <ul>
           {orders.map((order: Order) => (
-            <li key={order._id} style={{ marginBottom: 20 }}>
+            <li key={order._id} className="order">
               <strong>Order #{order._id}</strong>
               <br />
               {user.isAdmin === "admin" && order.customer && (
@@ -49,7 +51,7 @@ const OrderHistory = () => {
               <ul>
                 {order.items &&
                   order.items.map((item, idx) => (
-                    <li key={idx}>
+                    <li key={idx} className="order-items">
                       {item.product?.name || "Unknown"} x {item.quantity} - $
                       {item.product?.price || "?"}
                     </li>

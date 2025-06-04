@@ -76,11 +76,13 @@ const AdminProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="admin-products-changes">
       <div>
-        <h1>{formData._id ? "Edit Product" : "Add a New Product"}</h1>
+        <h2 className="admin-h2">
+          {formData._id ? "Edit Product:" : "Add a New Product:"}
+        </h2>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="admin-form">
           <label>Product Name:</label>
           <input
             type="text"
@@ -102,35 +104,46 @@ const AdminProductForm = () => {
           <label>Description:</label>
           <textarea
             name="description"
-            placeholder="Description"
             value={formData.description}
             onChange={handleInputChange}
             required
           ></textarea>
-          <button type="submit">
+          <button type="submit" className="admin-btn-form">
             {formData._id ? "Update Product" : "Add Product"}
           </button>
           {formData._id && (
-            <button type="submit" onClick={clearForm}>
+            <button
+              type="submit"
+              className="admin-btn-form"
+              onClick={clearForm}
+            >
               Cancel Edit
             </button>
           )}
         </form>
       </div>
 
-      <h2>Exsiting Products:</h2>
-      <ul>
+      <h2 className="admin-h2">Exsiting Products:</h2>
+      <ul className="admin-products-list">
         {products.map((p) => (
-          <li key={p._id}>
+          <li key={p._id} className="admin-product">
             <h4>
               {p.name} - ${p.price}
             </h4>
-            <p>{p.description}</p>
+            <p className="admin-p">{p.description}</p>
             <div>
-              <button type="button" onClick={() => handleEdit(p)}>
+              <button
+                type="button"
+                className="admin-btn"
+                onClick={() => handleEdit(p)}
+              >
                 Edit ✏️
               </button>
-              <button type="button" onClick={() => handleDelete(p._id)}>
+              <button
+                type="button"
+                className="admin-btn"
+                onClick={() => handleDelete(p._id)}
+              >
                 Delete 🗑️
               </button>
             </div>

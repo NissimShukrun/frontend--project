@@ -38,28 +38,41 @@ const ProductList = () => {
   };
 
   return (
-    <div>
-      <h1>Products:</h1>
+    <div className="products">
+      <h1 className="products-h1">Products:</h1>
 
-      <ul>
+      <ul className="products-list">
         {products.map((p) => (
-          <li key={p._id}>
-            {p.name} - ${p.price}
+          <li key={p._id} className="product">
+            <p className="products-p">
+              {p.name} - <span className="products-span">${p.price}</span>
+            </p>
             <div>
-              <button type="button" onClick={() => productPage(p._id)}>
+              <button
+                type="button"
+                className="products-btn"
+                onClick={() => productPage(p._id)}
+              >
                 More Details
               </button>
             </div>
-            <input
-              type="number"
-              name="number"
-              min={1}
-              placeholder="1"
-              onChange={(e) => handleChangeCount(p._id, e.target.value)}
-            />
-            <button type="button" onClick={() => handleBuy(p._id)}>
-              Buy
-            </button>
+            <div>
+              <input
+                className="products-input"
+                type="number"
+                name="number"
+                min={1}
+                placeholder="1"
+                onChange={(e) => handleChangeCount(p._id, e.target.value)}
+              />
+              <button
+                type="button"
+                className="products-btn"
+                onClick={() => handleBuy(p._id)}
+              >
+                Buy
+              </button>
+            </div>
           </li>
         ))}
       </ul>

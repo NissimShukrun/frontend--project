@@ -6,26 +6,42 @@ const Header = () => {
 
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/cart">Cart</Link>
+      <nav className="header-navbar">
+        {user && <span className="hello-nav">Hello, {user.name}</span>}
+        <Link to="/" className="links">
+          Home
+        </Link>
+        <Link to="/products" className="links">
+          Products
+        </Link>
+        <Link to="/cart" className="links">
+          Cart
+        </Link>
         {!user && (
           <>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
+            <Link to="/register" className="links">
+              Register
+            </Link>
+            <Link to="/login" className="links">
+              Login
+            </Link>
           </>
         )}
         {user && (
           <>
-            <span>Hello, {user.name}</span>
-            <Link to="/orders">My Orders</Link>
-            <Link to="/logout">Logout</Link>
+            <Link to="/orders" className="links">
+              My Orders
+            </Link>
+            <Link to="/logout" className="links">
+              Logout
+            </Link>
           </>
         )}
         {user?.isAdmin === "admin" && (
           <>
-            <Link to="/admin/products-form">Products Changes</Link>
+            <Link to="/admin/products-form" className="links">
+              Products Changes
+            </Link>
           </>
         )}
       </nav>

@@ -38,7 +38,7 @@ function App() {
       .catch(() => {});
   }, [dispatch]);
   return (
-    <div>
+    <div className="page">
       <Router>
         <Header />
 

@@ -35,10 +35,10 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="register">
+      <h2 className="register-h2">Register</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="register-form">
         <div>
           <label>Name:</label>
           <input
@@ -69,7 +69,9 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button className="register-btn" type="submit">
+          Register
+        </button>
       </form>
     </div>
   );

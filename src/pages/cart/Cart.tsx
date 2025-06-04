@@ -13,26 +13,43 @@ const Cart = () => {
   );
 
   if (items.length === 0) {
-    return <p>Your cart is empty.</p>;
+    return (
+      <p className="cart-h1" style={{ marginLeft: "20px" }}>
+        Your cart is empty.
+      </p>
+    );
   }
 
   return (
-    <div>
-      <h1>Your Cart</h1>
-      <ul>
+    <div className="cart">
+      <h1 className="cart-h1">Your Cart:</h1>
+      <ul className="cart-list">
         {items.map(({ product, quantity }) => (
-          <li key={product._id}>
-            {product.name} - {quantity} x ${product.price} = $
-            {product.price * quantity}
-            <button onClick={() => dispatch(removeFromCart(product._id))}>
+          <li key={product._id} className="cart-product">
+            <div className="cart-div-price">
+              <p className="cart-p">
+                {product.name} - {quantity} x ${product.price} =
+              </p>
+              <span className="cart-span">${product.price * quantity}</span>
+            </div>
+            <button
+              className="cart-btn"
+              onClick={() => dispatch(removeFromCart(product._id))}
+            >
               Remove
             </button>
           </li>
         ))}
       </ul>
-      <h2>Total: ${total}</h2>
-      <button onClick={() => navigate("/checkout")}>Buy</button>
-      <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
+      <h2 className="cart-total">
+        Total: <span className="cart-total-span">${total}</span>
+      </h2>
+      <button className="cart-btn-buy" onClick={() => navigate("/checkout")}>
+        Buy
+      </button>
+      <button className="cart-btn-clear" onClick={() => dispatch(clearCart())}>
+        Clear Cart
+      </button>
     </div>
   );
 };

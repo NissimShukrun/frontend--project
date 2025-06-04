@@ -75,10 +75,10 @@ const Checkout = () => {
     }
   };
   return (
-    <div style={{ maxWidth: 500, margin: "0 auto" }}>
-      <h2>Checkout</h2>
+    <div className="checkout">
+      <h2 className="checkout-h2">Checkout</h2>
       <form onSubmit={handleSubmit}>
-        <h3>Personal Information</h3>
+        <h3 className="checkout-h3">Personal Information</h3>
         <input
           name="firstName"
           placeholder="First Name"
@@ -111,7 +111,7 @@ const Checkout = () => {
         />
         <div>{errors.phone}</div>
 
-        <h3>Address</h3>
+        <h3 className="checkout-h3">Address</h3>
         <input
           name="address"
           placeholder="Street Address"
@@ -144,7 +144,7 @@ const Checkout = () => {
         />
         <div>{errors.zip}</div>
 
-        <h3>Payment</h3>
+        <h3 className="checkout-h3">Payment</h3>
         <input
           name="cardName"
           placeholder="Cardholder Name"
@@ -176,7 +176,11 @@ const Checkout = () => {
           onChange={handleChange}
         />
         <div>{errors.cvv}</div>
-        <button type="submit" disabled={orderStatus === "loading"}>
+        <button
+          className="checkout-btn"
+          type="submit"
+          disabled={orderStatus === "loading"}
+        >
           {orderStatus === "loading" ? "Processing..." : "Pay Now"}
         </button>
       </form>
