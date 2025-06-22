@@ -19,6 +19,7 @@ import { useAppDispatch } from "./store/store";
 import { fetchCurrentUser } from "./slices/authSlice";
 import { setCart } from "./slices/cartSlice";
 import AdminRoute from "./components/AdminRoute";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -67,6 +68,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <Chatbot />
         <Footer />
       </Router>
     </div>

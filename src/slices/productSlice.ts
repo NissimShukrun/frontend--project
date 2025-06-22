@@ -74,7 +74,7 @@ export const fetchDeleteProduct = createAsyncThunk(
       credentials: "include",
     });
     if (!response.ok && response.status !== 204)
-      throw new Error("Failed to create product");
+      throw new Error("Failed to delete product");
     return id;
   }
 );
