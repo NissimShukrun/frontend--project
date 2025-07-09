@@ -18,6 +18,7 @@ const Chatbot = () => {
       initialMessages: [
         "שלום! איך אוכל לעזור לך היום? 👋",
         "אני כאן כדי לענות על שאלות לגבי המוצרים שלנו ולקבוע פגישות.",
+        "או פשוט לקחת את הפרטים שלך ולחזור אליך בהקדם",
       ],
       i18n: {
         en: {
