@@ -16,9 +16,19 @@ body {
   min-height: 100vh;
   background-color: rgb(255, 255, 255);
 }
-
 .header-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.hello-nav {
+  font-size: 1.25rem;
+  margin-right: auto;
 }
 
 .links {
@@ -32,9 +42,49 @@ body {
   color: rgb(88, 140, 218);
 }
 
-.hello-nav {
-  font-size: 1.25rem;
-  margin-right: 16px;
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .hello-nav {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
 }
 
 .footer {
@@ -142,6 +192,11 @@ body {
   margin-left: 20px;
 }
 
+@media (max-width: 768px) {
+  .cart {
+    margin-left: 5px;
+  }
+}
 .cart-h1 {
   margin-bottom: 40px;
   font-size: 2.2rem;
@@ -248,7 +303,11 @@ body {
 .orders {
   margin-left: 20px;
 }
-
+@media (max-width: 768px) {
+  .orders {
+    margin-left: 5px;
+  }
+}
 .orders-h2 {
   margin-bottom: 40px;
 }
@@ -401,6 +460,13 @@ body {
 .login-form input,
 .register-form input {
   padding: 2px;
+}
+
+@media (max-width: 768px) {
+  .login-form input,
+  .register-form input {
+    margin-left: 2px;
+  }
 }
 
 .login-btn,
